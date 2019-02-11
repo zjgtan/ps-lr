@@ -1,22 +1,22 @@
 #ifndef PSERVER_H_
 #define PSERVER_H_
-#include <unordered_map>
+
 #include "ps/ps.h"
-using namespace ps;
+#include "parameters.h"
 
 class PServer{
 
     private:
-        KVServer<float>* _server;
-        std::unordered_map<uint64_t, float>* _parameters;
+        ps::KVServer<float> _server;
+        Parameters _parameters;
 
     public:
         PServer(); //初始化方法
 
     private:
-        void DataHandle(const KVMeta& req_meta,
-                const KVPairs<float>& req_data,
-                KVServer<float>* server); // 请求处理入口
+        void DataHandle(const ps::KVMeta& req_meta,
+                const ps::KVPairs<float>& req_data,
+                ps::KVServer<float>* server); // 请求处理入口
 };
 
 #endif
